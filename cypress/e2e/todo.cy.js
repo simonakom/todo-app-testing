@@ -40,6 +40,7 @@ describe('Page load and display elements for the first time', () => {
     cy.get('footer.info p').should('have.text', 'Double-click to edit a toodo'); 
   });
 
+  //item should stay after reload
 })
 
 // Group 2: Add new todos
@@ -173,16 +174,21 @@ describe('Delete todo item', () => {
   //   cy.get('.clear-completed').should('be.visible');
   // });
 
-  it('Should delete completed todo item by cliclikng "Clear"', () => {
-  
-    it('Should clear completed todos', () => {
-      addTodo('Cook dinner'); 
+  it('Should not delete not selected todo item by cliclikng "Clear"', () => {
+    addTodo('Cook dinner'); 
+    cy.get('.todo-list li').should('have.length', 1);
+    cy.contains('Clear').click();
+    cy.get('.todo-list li').should('have.length', 1);
+  });
+
+  it('Should delete selected todo item by cliclikng "Clear"', () => {
+    addTodo('Cook dinner'); 
       cy.get('.todo-list li').should('have.length', 1);
       cy.get('.toggle').click();
       cy.get('.clear-completed').click();
       cy.get('.todo-list li').should('have.length', 0);
-    });
   });
+
 });
 
 // Group 6: Edit todo item
