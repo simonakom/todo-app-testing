@@ -13,7 +13,6 @@ Before you begin, ensure you have the following installed on your machine:
 
 1. Clone this repository to your local machine.
 2. Navigate to the project directory.
-4. Url of tested app: `https://todolist.james.am/`.
 3. Continue with `Cypress` setup.
 
 ## Set up of Cypress
