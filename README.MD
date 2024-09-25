@@ -23,17 +23,22 @@ Before you begin, ensure you have the following installed on your machine:
 
 ````
   "scripts": {
-     "test": "npx cypress open"
+    "test": "npx cypress open",
+    "test:cmd": "npx cypress run"
   }
 ````
 
-- To run and open 'Cypress':  `npm run test`.
-- In Cypress UI choose E2E Testing in preffered browser and choose existing "spec": `todo.cy.js`. 
+- To run and open 'Cypress' user interface (GUI):  `npm run test`. 
+  - In Cypress UI choose E2E Testing in preffered browser and choose existing "spec": `todo.cy.js`.
+- To run Cypress tests in your terminal or command line interface (CLI): `npm run test:cmd`. 
+
 
 ## Run
 
-- To run and open 'Cypress':  `npm run test`.
+- Open terminal window and execute the test script: `npm run test` or `npm run test:cmd`. 
 
 ## Automated tests with Cypress
 
-Tests can be found: `cypress/e2e/todo.cy.js`
+- Tests can be found: `cypress/e2e/todo.cy.js`
+- Commands can be found: `cypress/support/commands.js`.
+
