@@ -35,12 +35,6 @@ jobs:
           npm install
           npm install cypress -D
 
-      # # Add Cypress test scripts to package.json
-      # - name: Add Cypress test scripts to package.json
-      #   run: |
-      #     npx json -I -f package.json -e 'this.scripts["test"]="npx cypress open"'
-      #     npx json -I -f package.json -e 'this.scripts["test:cmd"]="npx cypress run"'
-
       # # Start the application
       # - name: Start the application
       #   run: npm run dev &
