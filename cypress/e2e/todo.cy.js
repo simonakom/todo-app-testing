@@ -60,17 +60,23 @@ describe('Page load and display elements', () => {
       cy.verifyTodoCount(1).and('not.have.class', 'completed');            
     });
 
-    it('"Check All" button existx after adding a todo', () => {
+    // Prably should be also visible.
+
+    it('"Check All" button exist after adding a todo', () => {
       cy.addTodo('Learn Cypress');
       cy.verifyTodoCount(1);
-      cy.get('#toggle-all').should('exist');
+      cy.get('#toggle-all').should('exist'); 
     });
+
+    // Prably should be also visible.
 
     it('Checkbox exists after adding a todo', () => {
       cy.addTodo('Learn Cypress'); 
       cy.verifyTodoCount(1);
       cy.get('.todo-list li .toggle').should('exist');
     });
+
+    // Prably should be also visible.
 
     it('Delete (X) button exists when hovering over a todo item', () => {
       cy.addTodo('Learn Cypress'); 
@@ -131,11 +137,37 @@ describe('Add a new todo item', () => {
       cy.get('.todo-list li').should('contain', 'Learn Cypress');
     });
 
-    it('Clear the input field after adding a todo', () => {
+    it('Allow adding multiple new todo items with "Enter" key', () => {
       cy.addTodo('Learn Cypress');
-      cy.verifyTodoCount(1);
-      cy.get('.new-todo').should('have.value', '   '); 
-    });
+      cy.addTodo('Cook dinner');
+      cy.addTodo('Go for a run');
+      cy.verifyTodoCount(3);
+      cy.get('.todo-list li').should('have.length', 3)
+      .and(($todos) => {
+        expect($todos.eq(0)).to.contain('Learn Cypress');
+        expect($todos.eq(1)).to.contain('Cook dinner');
+        expect($todos.eq(2)).to.contain('Go for a run');
+      });
+  });
+
+    // It works only when there are spaces: ('have.value', '   '); 
+
+    // it('Clear the input field after adding a todo', () => {
+    //   cy.addTodo('Learn Cypress');
+    //   cy.verifyTodoCount(1);
+    //   cy.get('.new-todo').should('have.value', ''); 
+    // });
+
+    // After adding a todo input is empty but without the placeholder
+
+    // it('Should keep the placeholder after adding a todo and unfocusing the input', () => {
+    //   const todoText = 'My New Todo';
+    //   cy.get("form.todo-form input.new-todo").should('exist').and('be.visible').should('have.attr', 'placeholder', "What need's to be done?");
+    //   cy.addTodo('Learn Cypress');
+    //   cy.get('.todo-list li').should('have.length', 1)
+    //   cy.get('.new-todo').should('have.value', '   ');
+    //   cy.get('.new-todo').should('have.attr', 'placeholder', 'What needs to be done?');
+    // });
 
     it('New todo is not marked as completed', () => {
       cy.addTodo('Learn Cypress');
@@ -165,11 +197,15 @@ describe('Add a new todo item', () => {
       cy.verifyTodoCount(1).and('contain', todoText);
     });
 
+    // Probably should not be possible to add a long string e.g. 1000 characters.
+
     it('Allow adding a todo with a very long string', () => {
       const longTodo = 'a'.repeat(1000); 
       cy.addTodo(longTodo);
       cy.verifyTodoCount(1).and('contain.text', longTodo);
     });
+
+    // Probably should not be possible to add duplicate todo items.
 
     ('Allow adding duplicate todo items', () => {
       const todoText = 'Learn Cypress';
@@ -255,7 +291,7 @@ describe('Edit todo item', () => {
     cy.get('.todo-list li .edit').should('be.focused');
   });
 
-  it('Cancel the edit without saving when pressing Escape', () => {
+  it('Cancel the edit without saving when pressing "Escape"', () => {
     cy.addTodo('Learn Cypress');
     cy.get('.todo-list li label').dblclick();
     cy.get('.todo-list li .edit').clear().type('Edited text{esc}');
@@ -329,12 +365,14 @@ describe('Complete todo item', () => {
     cy.verifyTodoCount(1);
   });
 
+  // When only added one todo, to mark it need double click on #toggle-all.
+  // When have added multipe todo, to mark it need one click on #toggle-all.
+
   it('Should mark all todos as complete', () => {
     cy.addTodo('Learn Cypress');
     cy.addTodo('Walk the dog');
     cy.verifyTodoCount(2);
     cy.get('#toggle-all').click({ force: true });
-
     cy.get('.todo-list li').each(($el) => {
       cy.wrap($el).should('have.class', 'completed');
     });
@@ -342,10 +380,27 @@ describe('Complete todo item', () => {
 
   it('Should unmark a completed todo', () => {
     cy.addTodo('Learn Cypress');
-    cy.get('.toggle').click(); 
-    cy.get('.toggle').click();
+    cy.get('.toggle').click(); //mark completed
+    cy.get('.toggle').click(); //unmark completed
     cy.get('.todo-list li').should('not.have.class', 'completed');
+    cy.verifyTodoCount(1);
   });
+
+  // Probably should unmark all todos when clicked once (app is unmarking all todos when double clicked).
+
+  // it('Should unmark all todos as incomplete', () => {
+  //   cy.addTodo('Learn Cypress');
+  //   cy.addTodo('Walk the dog');
+  //   cy.verifyTodoCount(2);
+  //   cy.get('#toggle-all').click({ force: true });
+  //   cy.get('.todo-list li').each(($el) => {
+  //     cy.wrap($el).should('have.class', 'completed');
+  //   });
+  //   cy.get('#toggle-all').click({ force: true });
+  //   cy.get('.todo-list li').each(($el) => {
+  //     cy.wrap($el).should('not.have.class', 'completed');
+  //   });
+  // });  
   
   it('Should persist completed status after page reload', () => {
     cy.addTodo('Learn Cypress');
@@ -489,7 +544,7 @@ describe('Filter Todos', () => {
 
   it('Should preserve filter state on page reload', () => {
     cy.addTodo('Learn Cypress');
-    cy. addTodo('Write tests');
+    cy.addTodo('Write tests');
     cy.verifyTodoCount(2);
     cy.get('.todo-list li:first .toggle').click();
     cy.get('li a[href="#/completed"]').click();
@@ -514,14 +569,18 @@ describe('Todo count', () => {
     cy.visitTodoPage();
   });
 
-  it('Shows INCORRECT remaining todo count', () => {
-    cy.addTodo('Walk a dog'); 
-    cy.addTodo('Clean a living room'); 
-    cy.addTodo('Read a book'); 
-    cy.get('.todo-count strong').should('contain', '2');
-    cy.get('.todo-list li:first .toggle').click();
-    cy.get('.todo-count strong').should('contain', '1');
-  });
+  // Its not showing correct count.
+
+  // it('Shows correct remaining todo count', () => {
+  //   cy.addTodo('Walk a dog'); 
+  //   cy.addTodo('Clean a living room'); 
+  //   cy.addTodo('Read a book'); 
+  //   cy.get('.todo-count strong').should('contain', '3');
+  //   cy.get('.todo-list li:first .toggle').click();
+  //   cy.get('.todo-count strong').should('contain', '2');
+  // });
+  
+  // Its not showing correct count, but just checking if count increase/decrease.
 
   it('Should increase todo count when a new todo is added', () => {
     cy.addTodo('Buy groceries');

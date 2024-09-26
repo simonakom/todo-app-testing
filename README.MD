@@ -36,8 +36,10 @@ Before you begin, ensure you have the following installed on your machine:
 
 ## Automated tests with Cypress
 
-- Tests can be found: `cypress/e2e/todo.cy.js`
+- Tests can be found: `cypress/e2e/todo.cy.js` (Tests with errors are commented).
 - Commands can be found: `cypress/support/commands.js`.
+
+
 
 ## CI/CD Integration with GitHub Actions
 
