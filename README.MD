@@ -28,14 +28,11 @@ Before you begin, ensure you have the following installed on your machine:
   }
 ````
 
+## Run
+
 - To run and open 'Cypress' user interface (GUI):  `npm run test`. 
   - In Cypress UI choose E2E Testing in preffered browser and choose existing "spec": `todo.cy.js`.
 - To run Cypress tests in your terminal or command line interface (CLI): `npm run test:cmd`. 
-
-
-## Run
-
-- Open terminal window and execute the test script: `npm run test` or `npm run test:cmd`. 
 
 ## Automated tests with Cypress
 
