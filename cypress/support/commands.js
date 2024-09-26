@@ -4,7 +4,6 @@ Cypress.Commands.add('visitTodoPage', () => {
 Cypress.Commands.add('addTodo', (todoText, key = '{enter}') => {
     cy.get('.new-todo').type(`${todoText}${key}`);
 });
-  
 Cypress.Commands.add('verifyTodoCount', (count) => { 
     cy.get('.todo-list li').should('have.length', count);
 });
