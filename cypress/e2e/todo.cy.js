@@ -1,10 +1,5 @@
 const pageUrl = "https://todolist.james.am/#/";
 
-const addTodo = (todoText, key = '{enter}') => { 
-  cy.get('.new-todo').type(`${todoText}${key}`);
-};
-
-
 // --------------------------------------Test Suits---------------------------------------------
 
 // Group 1: Page load and display elements
