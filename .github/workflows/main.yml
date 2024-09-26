@@ -1,0 +1,59 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      # Step to initialize package.json (if it doesn't exist)
+      - name: Initialize Node.js project (if not already initialized)
+        run: |
+          if [ ! -f package.json ]; then
+            npm init -y
+          fi
+
+      # Install Cypress and other project dependencies
+      - name: Install Cypress and dependencies
+        run: |
+          npm install
+          npm install cypress -D
+
+      # Add Cypress test scripts to package.json
+      - name: Add Cypress test scripts to package.json
+        run: |
+          npx json -I -f package.json -e 'this.scripts["test"]="npx cypress open"'
+          npx json -I -f package.json -e 'this.scripts["test:cmd"]="npx cypress run"'
+
+      # # Start the application
+      # - name: Start the application
+      #   run: npm run dev &
+      #   env:
+      #     CI: true
+
+      # # Wait for the application to be ready before running tests
+      # - name: Wait for the application to be ready
+      #   run: npx wait-on http://localhost:3000
+
+      # Run Cypress tests using Chrome browser 
+      - name: Run Cypress tests with Chrome
+        run: npm run test:cmd --browser chrome
+        env:
+          CI: true
+
