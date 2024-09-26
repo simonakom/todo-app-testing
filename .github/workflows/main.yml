@@ -53,7 +53,7 @@ jobs:
 
       # Run Cypress tests using Chrome browser 
       - name: Run Cypress tests with Chrome
-        run: npm run test:cmd --browser chrome
+        run: npx cypress run --browser chrome
         env:
           CI: true
 
