@@ -22,32 +22,12 @@ jobs:
         with:
           node-version: 16
 
-      # Step to initialize package.json (if it doesn't exist)
-      - name: Initialize Node.js project (if not already initialized)
-        run: |
-          if [ ! -f package.json ]; then
-            npm init -y
-          fi
+      - name: Install dependencies
+        run: npm install
 
-      # Install Cypress and other project dependencies
-      - name: Install Cypress and dependencies
-        run: |
-          npm install
-          npm install cypress -D
-
-      # # Start the application
-      # - name: Start the application
-      #   run: npm run dev &
-      #   env:
-      #     CI: true
-
-      # # Wait for the application to be ready before running tests
-      # - name: Wait for the application to be ready
-      #   run: npx wait-on http://localhost:3000
-
-      # Run Cypress tests using Chrome browser 
       - name: Run Cypress tests with Chrome
         run: npx cypress run --browser chrome
         env:
           CI: true
+
 

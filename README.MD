@@ -13,22 +13,9 @@ Before you begin, ensure you have the following installed on your machine:
 
 1. Clone this repository to your local machine.
 2. Navigate to the project directory.
-3. Continue with `Cypress` setup.
+3. Install dependencies: `npm install`.
 
-## Set up of Cypress
-
-- Install 'package.json': `npm init -y`.
-- Install Cypress library: `npm install cypress -D`.
-- Add a new test script to 'package.json': 
-
-````
-  "scripts": {
-    "test": "npx cypress open",
-    "test:cmd": "npx cypress run"
-  }
-````
-
-## Run
+## Run Cypress
 
 - To run and open 'Cypress' user interface (GUI):  `npm run test`. 
   - In Cypress UI choose E2E Testing in preffered browser and choose existing "spec": `todo.cy.js`.
@@ -38,7 +25,6 @@ Before you begin, ensure you have the following installed on your machine:
 
 - Tests can be found: `cypress/e2e/todo.cy.js` (Tests with errors are commented).
 - Commands can be found: `cypress/support/commands.js`.
-
 
 
 ## CI/CD Integration with GitHub Actions
