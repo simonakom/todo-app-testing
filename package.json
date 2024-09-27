@@ -1,0 +1,16 @@
+{
+  "name": "todo-app-testing",
+  "version": "1.0.0",
+  "description": "This project is about testing <a href=\"https://todolist.james.am/\">To-do app</a> with Cypress automated tests.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open",
+    "test:cmd": "npx cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.14.2"
+  }
+}
