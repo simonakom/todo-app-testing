@@ -1,6 +1,6 @@
 # To-do app - automated testing with Cypress
  
-This project is about testing CRUD functionality of <a href="https://todolist.james.am/">To-do app</a> with Cypress automated tests.
+This project is about testing CRUD functionality of <a href="https://todolist.james.am/">To-do app</a> with Cypress automated tests + CI/CD.
 
 ## Prerequisites
 
