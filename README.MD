@@ -6,7 +6,7 @@ This project is about testing CRUD functionality of <a href="https://todolist.ja
 
 Before you begin, ensure you have the following installed on your machine:
 
-- Node.js: [Download here](https://nodejs.org/).
+- Node.js.
 - npm (Node Package Manager): Comes with Node.js installation.
 
 ## Set up 
