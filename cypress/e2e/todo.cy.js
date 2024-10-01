@@ -61,7 +61,6 @@ describe('Page load and display elements', () => {
     });
 
     // Prably should be also visible.
-
     it('"Check All" button exist after adding a todo', () => {
       cy.addTodo('Learn Cypress');
       cy.verifyTodoCount(1);
@@ -69,7 +68,6 @@ describe('Page load and display elements', () => {
     });
 
     // Prably should be also visible.
-
     it('Checkbox exists after adding a todo', () => {
       cy.addTodo('Learn Cypress'); 
       cy.verifyTodoCount(1);
@@ -77,7 +75,6 @@ describe('Page load and display elements', () => {
     });
 
     // Prably should be also visible.
-
     it('Delete (X) button exists when hovering over a todo item', () => {
       cy.addTodo('Learn Cypress'); 
       cy.verifyTodoCount(1);
@@ -158,7 +155,7 @@ describe('Add a new todo item', () => {
     //   cy.get('.new-todo').should('have.value', ''); 
     // });
 
-    // After adding a todo input is empty but without the placeholder
+    // After adding a todo, input is empty but without the placeholder
 
     // it('Should keep the placeholder after adding a todo and unfocusing the input', () => {
     //   const todoText = 'My New Todo';
@@ -198,7 +195,6 @@ describe('Add a new todo item', () => {
     });
 
     // Probably should not be possible to add a long string e.g. 1000 characters.
-
     it('Allow adding a todo with a very long string', () => {
       const longTodo = 'a'.repeat(1000); 
       cy.addTodo(longTodo);
@@ -206,7 +202,6 @@ describe('Add a new todo item', () => {
     });
 
     // Probably should not be possible to add duplicate todo items.
-
     ('Allow adding duplicate todo items', () => {
       const todoText = 'Learn Cypress';
       cy.addTodo(todoText);
@@ -367,7 +362,6 @@ describe('Complete todo item', () => {
 
   // When only added one todo, to mark it need double click on #toggle-all.
   // When have added multipe todo, to mark it need one click on #toggle-all.
-
   it('Should mark all todos as complete', () => {
     cy.addTodo('Learn Cypress');
     cy.addTodo('Walk the dog');
@@ -581,7 +575,7 @@ describe('Todo count', () => {
   // });
   
   // Its not showing correct count, but just checking if count increase/decrease.
-
+  
   it('Should increase todo count when a new todo is added', () => {
     cy.addTodo('Buy groceries');
     cy.get('.todo-count strong').should('contain', '0');
